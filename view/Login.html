@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script>
+			function check() 
+			{
+    			if(document.getElementById('pass').value.localeCompare(document.getElementById('cpass').value)==0) 
+				{
+					alert("Password matched");
+				} else 
+				{
+
+				}
+				
+			}
+		</script>
+	</head>
+			<form id=log action="http://192.168.96.70:8081/Home" method = POST>
+			<div class="login-wrap">
+					<div class="login-html">
+						<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+						<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+						<div class="login-form">
+							<div class="sign-in-htm">
+								<div class="group">
+									<label for="user" class="label">Username</label>
+									<input name="user" id="uuser" type="text" class="input">
+								</div>
+								<div class="group">
+									<label for="pass" class="label">Password</label>
+									<input name ="pass" id="sigInPass" type="password" class="input" data-type="password">
+								</div>
+								<div class="group">
+									<input name = "check" id="check" type="checkbox" class="check" checked>
+									<label for="check"><span class="icon"></span> Keep me Signed in</label>
+								</div>
+								<div class="group">
+									<input onfocusout = "check()" type="submit"  class="button" form='log' value="Sign In">
+								</div>
+								<div class="hr"></div>
+								<div class="foot-lnk">
+									<a href="#forgot">Forgot Password?</a>
+								</div>
+							</div>
+						</form>
+						<form id = 'signUp' action="http://192.168.96.70:8081/Register" method = POST>
+							<div class="sign-up-htm">
+								<div class="group">
+									<label for="user" class="label">Username</label>
+									<input name = "user" id="user" type="text" class="input">
+								</div>
+								<div class="group">
+									<label for="pass" class="label">Password</label>
+									<input name = "pass" id="pass" type="password" class="input" data-type="password">
+								</div>
+								<div class="group">
+									<label for="pass" class="label">Repeat Password</label>
+									<input onkeyup = "check()" name = "confPass" id="cpass" type="password" class="input" data-type="password">
+								</div>
+								<div class="group">
+									<label for="pass" class="label">Email Address</label>
+									<input name = "email" id="eid" type="text" class="input">
+								</div>
+								<div class="group">
+									<input from='signUp' type="submit" id = "signup" class="button" value="Sign Up" >
+								</div>
+								<div class="hr"></div>
+								<div class="foot-lnk">
+									<label for="tab-1">Already Member?</a>
+								</div>
+							</form>
+							</div>
+						</div>
+					</div>
+				</div>
+	</body>
+</html>
