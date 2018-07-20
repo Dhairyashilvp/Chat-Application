@@ -3,6 +3,7 @@ var express = require('express');
 var router = require('./config/routes')
 var bodyParser = require('body-parser');
 var nunjucks = require('nunjucks');
+var session = require('express-session');
 const app = express();
 var server = require('http').createServer(app);
 
@@ -23,6 +24,7 @@ var urlencodedParser = app.use(
 app.use(express.static('app/assets/css'));
 app.use(express.static('app/assets/images'));
 app.use(CONSTANTS.BASE_URL, router);
+app.use(bodyParser.json());
 
 server.listen(CONSTANTS.PORT,CONSTANTS.IP,function(){
     console.log(`Log : Server running at http://${CONSTANTS.IP}:${CONSTANTS.PORT}`);
