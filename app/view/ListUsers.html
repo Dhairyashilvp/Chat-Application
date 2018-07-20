@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+</head>
+<body>
+
+<center><h2>List of Registered Users</h2></center>
+<center>
+<table border="1">
+  <tr>
+    <th>Username</th>
+  </tr>
+  {% for users in user %}
+  <tr>
+    <td>
+        {{ users.username }}
+    </td>
+  </tr><br>
+  {% endfor %}
+</table>
+</center>
+<script>
+    var result = s;
+</script>
+
+</body>
+</html>
