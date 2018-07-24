@@ -26,6 +26,18 @@ module.exports.register = function (req, res) {
     
 }
 
+module.exports.dashboard = function(req,res){
+    /* if(!req.session.username)
+    {
+        res.setHeader('Content-Type', 'text/html');
+        res.render(path.resolve(__dirname, '../view/Home.html'),{username : req.body.user});
+    }
+    else{
+        res.setHeader('Content-Type', 'text/html');
+        res.redirect('/');
+    } */
+}
+
 module.exports.getUsers = function(req,res){
     DBModel.getUsers(function(err,result){
         res.send(result);

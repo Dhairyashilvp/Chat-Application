@@ -8,6 +8,7 @@ router = express.Router();
 
 router.get('/',HomeController.home);
 router.post('/chats',AccountController.auth);
+router.get('/chats',AccountController.dashboard);
 router.post('/users',AccountController.register);
 router.get('/users',AccountController.getUsers);
 

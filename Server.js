@@ -25,6 +25,11 @@ app.use(express.static('app/assets/css'));
 app.use(express.static('app/assets/images'));
 app.use(CONSTANTS.BASE_URL, router);
 app.use(bodyParser.json());
+app.use(session({
+    secret: '2C44-4D44-WppQ38S',
+    resave: true,
+    saveUninitialized: true
+}));
 
 server.listen(CONSTANTS.PORT,CONSTANTS.IP,function(){
     console.log(`Log : Server running at http://${CONSTANTS.IP}:${CONSTANTS.PORT}`);
