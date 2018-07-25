@@ -1,13 +1,9 @@
 var mysql = require('mysql')
-var conObj;
+var path = require('path');
+var CONSTANTS = require(path.join(__dirname ,'../../config/constants'));
 
 var dbCon = function(whenConnected){
-    var con = mysql.createConnection({
-        host : "localhost",
-        user : "root",
-        password : "mysql",
-        database: "chatApplication"
-    });
+    var con = mysql.createConnection(CONSTANTS.DB);
     con.connect(function (err){
         if(err) {
             whenConnected(null, err);

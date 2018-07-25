@@ -18,6 +18,9 @@ module.exports.register = function(userData,callToController){
         });
         
     }
+    else{
+        callToController(null,null);
+    }
 }
 
 module.exports.getUsers = function(callToController){

@@ -1,15 +1,15 @@
-var CONSTANTS = require('./config/constants');
-var express = require('express');
-var router = require('./config/routes')
-var bodyParser = require('body-parser');
-var nunjucks = require('nunjucks');
-var session = require('express-session');
-const app = express();
-var server = require('http').createServer(app);
+var CONSTANTS   = require('./config/constants');
+var express     = require('express');
+var router      = require('./config/routes')
+var bodyParser  = require('body-parser');
+var session     = require('express-session');
+var MySQLStore  = require('express-mysql-session')(session);
+var nunjucks    = require('nunjucks');
+const app       = express();
+var server      = require('http').createServer(app);
+var io          = require('socket.io')(server);
+var cookieParser= require('cookie-parser');
 
-var io = require('socket.io')(server);
-
-//app.set('view engine', 'html');
 nunjucks.configure('./app/view',{
     autoescape: true,
     express: app,
@@ -18,22 +18,31 @@ nunjucks.configure('./app/view',{
 
 var urlencodedParser = app.use(
     bodyParser.urlencoded({
-         extended: false 
-        }));
+        extended: false
+}));
+        
+var options = CONSTANTS.DB;
+
+var sessionStore = new MySQLStore(options);
 
 app.use(express.static('app/assets/css'));
 app.use(express.static('app/assets/images'));
-app.use(CONSTANTS.BASE_URL, router);
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(session({
-    secret: '2C44-4D44-WppQ38S',
-    resave: true,
-    saveUninitialized: true
-}));
+        secret: '2C44-4D44-WppQ38S',
+        resave: true,
+        store: sessionStore,
+        saveUninitialized: true,
+    }));
+
+app.use(CONSTANTS.BASE_URL, router);
 
 server.listen(CONSTANTS.PORT,CONSTANTS.IP,function(){
     console.log(`Log : Server running at http://${CONSTANTS.IP}:${CONSTANTS.PORT}`);
   });
+
+  //sessionStore.close();
 
   module.exports = app;
 
