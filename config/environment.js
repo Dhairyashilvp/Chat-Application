@@ -1,8 +1,8 @@
-/* export const VIEW_PATH =  VIEW_PATH = require('../app/view');
-export const VIEW_DIR =  VIEW_DIR = join(__dirname, VIEW_PATH);
+var path = require('path');
+module.exports.VIEW_DIR =  VIEW_DIR = path.join(__dirname,'../app/view');
 module.exports.DATABASES = DATABASES = {
     host : "localhost",
     user : "root",
     password : "mysql",
     database: "chatApplication"
-} */
+}

@@ -1,3 +1,4 @@
+var ENV         = require('./config/environment');
 var CONSTANTS   = require('./config/constants');
 var express     = require('express');
 var router      = require('./config/routes')
@@ -25,6 +26,7 @@ var options = CONSTANTS.DB;
 
 var sessionStore = new MySQLStore(options);
 
+app.set('views', ENV.VIEW_DIR);
 app.use(express.static('app/assets/css'));
 app.use(express.static('app/assets/images'));
 app.use(bodyParser.json());

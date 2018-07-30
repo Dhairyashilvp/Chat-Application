@@ -12,7 +12,7 @@
 		<div id="profile">
 			<div class="wrap">
 				<img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-				<p>{{username}}</p>
+				<p>{{username}}{{pass}}</p>
 				<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
 				<div id="status-options">
 					<ul>
@@ -37,6 +37,20 @@
 			<input type="text" placeholder="Search contacts..." />
 		</div>
 		<div id="contacts">
+			<ul>
+				<!-- {% for users in onlinePeople %} -->
+				<li class="contact">
+					<div class="wrap">
+						<span class="contact-status online"></span>
+						<img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
+						<div class="meta">
+							<p class="name"><!-- {{ users.data.user.username }} --></p>
+							<p class="preview">You just got LITT up, Mike.</p>
+						</div>
+					</div>
+				</li>
+				<!-- {% endfor %} -->
+			</ul>
 		</div>
 		<div id="bottom-bar">
 			

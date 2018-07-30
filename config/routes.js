@@ -6,10 +6,7 @@ var path = require('path');
 router = express.Router();
 
 // ROUTING
-router.get('/',function(req,res,next){
-    console.log(req.session);
-    next();
-});
+
 router.get('/',HomeController.home);
 router.get('/users',AccountController.getUsersView);
 router.get('/chats',AccountController.auth);
