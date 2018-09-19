@@ -1,4 +1,5 @@
 <html>
+	<title>ChatApp</title>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script>
@@ -16,7 +17,8 @@
 			}
 		</script>
 	</head>
-			<form id=log action="http://192.168.96.70:8081/chats" method = POST>
+	<body>
+			<form id=log action="http://192.168.92.176:8081/chats" method = POST>
 			<div class="login-wrap">
 					<div class="login-html">
 						<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
@@ -25,11 +27,11 @@
 							<div class="sign-in-htm">
 								<div class="group">
 									<label for="user" class="label">Username</label>
-									<input name="user" id="username" type="text" class="input">
+									<input name="user" id="username" type="text" class="input" required>
 								</div>
 								<div class="group">
 									<label for="pass" class="label">Password</label>
-									<input name ="pass" id="sigInPass" type="password" class="input" data-type="password">
+									<input name ="pass" id="sigInPass" type="password" class="input" data-type="password" required>
 								</div>
 								<div class="group">
 									<input name = "check" id="check" type="checkbox" class="check" checked>
@@ -44,23 +46,23 @@
 								</div>
 							</div>
 						</form>
-						<form id = 'signUp' onsubmit="return check()" action="http://192.168.96.70:8081/users" method = POST>
+						<form id = 'signUp' onsubmit="return check()" action="http://192.168.92.176:8081/users" method = POST>
 							<div class="sign-up-htm">
 								<div class="group">
 									<label for="user" class="label">Username</label>
-									<input name = "user" id="userID" type="text" class="input">
+									<input name = "user" id="userID" type="text" class="input" required>
 								</div>
 								<div class="group">
 									<label for="pass" class="label">Password</label>
-									<input name = "pass" id="pass" type="password" class="input" data-type="password">
+									<input name = "pass" id="pass" type="password" class="input" data-type="password" required>
 								</div>
 								<div class="group">
 									<label for="pass" class="label">Repeat Password</label>
-									<input name = "confPass" id="cpass" type="password" class="input" data-type="password">
+									<input name = "confPass" id="cpass" type="password" class="input" data-type="password" required>
 								</div>
 								<div class="group">
 									<label for="pass" class="label">Email Address</label>
-									<input name = "email" id="eid" type="text" class="input">
+									<input name = "email" id="eid" type="text" class="input" required>
 								</div>
 								<div class="group">
 									<input from='signUp' type="submit" id = "signup" class="button" value="Sign Up">

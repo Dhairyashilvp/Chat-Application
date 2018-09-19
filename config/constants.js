@@ -1,6 +1,6 @@
-const BASE_URL = '/';
 const PORT = 8081;
-const IP = "192.168.96.70";
+const IP = "192.168.92.176";
+const BASE_URL = `http://${IP}:${PORT}`;
 const DB = {
     host: 'localhost',
     port: 3306,

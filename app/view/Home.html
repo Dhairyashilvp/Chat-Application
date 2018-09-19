@@ -1,107 +1,107 @@
 <!DOCTYPE html>
 <html class=''>
-	<title>ChatApp</title>
-	<head>
-		<link rel="stylesheet" type="text/css" href="HomeStyle.css">
-	</head>
-<body>
-		<script src="nunjucks.js"></script>
-		<script src="/socket.io/socket.io.js"></script>
-<div id="frame">
-	<div id="sidepanel">
-		<div id="profile">
-			<div class="wrap">
-				<img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-				<p>{{username}}{{pass}}</p>
-				<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
-				<div id="status-options">
-					<ul>
-						<li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
-						<li id="status-away"><span class="status-circle"></span> <p>Away</p></li>
-						<li id="status-busy"><span class="status-circle"></span> <p>Busy</p></li>
-						<li id="status-offline"><span class="status-circle"></span> <p>Offline</p></li>
+<title>ChatApp</title>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="HomeStyle.css">
+	<script src="jquery.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="home.js"> </script>
+</head>
+
+<body onload = "setUserDetails('{{display.email}}','{{display.name}}')">
+	
+	<div id="frame">
+		<div id="sidepanel">
+			<div id="profile">
+				<div class="wrap">
+					<img id="profile-img" src="https://openclipart.org/download/211821/matt-icons_preferences-desktop-personal.svg" class="online" alt="" />
+					<p>{{display.name}}</p>
+					<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
+					<div id="status-options">
+						<ul>
+							<li id="status-online" class="active">
+								<span class="status-circle"></span>
+								<p>Online</p>
+							</li>
+							<li id="status-away">
+								<span class="status-circle"></span>
+								<p>Away</p>
+							</li>
+							<li id="status-busy">
+								<span class="status-circle"></span>
+								<p>Busy</p>
+							</li>
+							<li id="status-offline">
+								<span class="status-circle"></span>
+								<p>Offline</p>
+							</li>
+						</ul>
+					</div>
+					<div id="expanded">
+						<label for="twitter">
+							<i class="fa fa-facebook fa-fw" aria-hidden="true"></i>
+						</label>
+						<input name="twitter" type="text" value="mikeross" />
+						<label for="twitter">
+							<i class="fa fa-twitter fa-fw" aria-hidden="true"></i>
+						</label>
+						<input name="twitter" type="text" value="ross81" />
+						<label for="twitter">
+							<i class="fa fa-instagram fa-fw" aria-hidden="true"></i>
+						</label>
+						<input name="twitter" type="text" value="mike.ross" />
+					</div>
+				</div>
+			</div>
+			<div id="search">
+				<label for="">
+					<i class="fa fa-search" aria-hidden="true"></i>
+				</label>
+				<input type="text" placeholder="Search contacts..." />
+			</div>
+			<div id="contacts">
+				<ul id="users">
+					
+				</ul>
+			</div>
+
+			<div id="bottom-bar">
+
+				<button id="addcontact">
+					<i class="AddContactClass" aria-hidden="true"></i>
+					<span>Add contact</span>
+				</button>
+				<button id="settings" onclick = "logout()">
+					<i class="SettingClass" aria-hidden="true"></i>
+					<span>Logout</span>
+				</button>
+			</div>
+		</div>
+			<div class="content" style = "display:none">
+				<div class="contact-profile">
+					<img src="https://openclipart.org/download/211821/matt-icons_preferences-desktop-personal.svg" alt="" />
+					<p id = "dashboard"></p>
+				</div>
+				<div class="messages">
+					<ul id="chat">
+						<li></li>
 					</ul>
 				</div>
-				<div id="expanded">
-					<label for="twitter"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i></label>
-					<input name="twitter" type="text" value="mikeross" />
-					<label for="twitter"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i></label>
-					<input name="twitter" type="text" value="ross81" />
-					<label for="twitter"><i class="fa fa-instagram fa-fw" aria-hidden="true"></i></label>
-					<input name="twitter" type="text" value="mike.ross" />
+				<div class="message-input">
+					<div class="wrap">
+						<input type="text" placeholder="Write your message..." id="msg" value="" name = "message" />
+						<i class="fa fa-paperclip attachment" aria-hidden="true"></i>
+						<button class="submit" onclick="sendMsg()">
+							<i class="fa fa-paper-plane " aria-hidden="true"> Send</i>
+						</button>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div id="search">
-			<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-			<input type="text" placeholder="Search contacts..." />
-		</div>
-		<div id="contacts">
-			<ul>
-				<!-- {% for users in onlinePeople %} -->
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status online"></span>
-						<img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-						<div class="meta">
-							<p class="name"><!-- {{ users.data.user.username }} --></p>
-							<p class="preview">You just got LITT up, Mike.</p>
-						</div>
-					</div>
-				</li>
-				<!-- {% endfor %} -->
-			</ul>
-		</div>
-		<div id="bottom-bar">
-			
-			<button id="addcontact"><i class="AddContactClass"aria-hidden="true"></i> <span>Add contact</span></button>
-			<button id="settings"><i class= "SettingClass"aria-hidden="true"></i> <span>Settings</span></button>
-		</div>
 	</div>
-	<div class="content">
-		<div class="contact-profile">
-			<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-			<p>USER</p>
-		</div>
-		<div class="messages">
-			<ul id ="chat">
-			</ul>		
-		</div>
-		<div class="message-input">
-			<div class="wrap">
-			<input type="text" placeholder="Write your message..." id = "msg" value=""/>
-			<i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-			<button class="submit" onclick="send()"><i class="fa fa-paper-plane " aria-hidden="true"> send</i></button>
-			</div>
-		</div>
-	</div>
-</div>
-<script>  
-		var socket = io.connect('http://192.168.96.70:8081');
-		function send(){
-		  //alert(document.getElementById('msg').value);
-		  socket.emit('Message',document.getElementById('msg').value);
-		}
-		socket.on('myMsg',function(msg){
-			var ul = document.getElementById("chat");
-			var li = document.createElement("li");
-			var p = document.createElement("p");
-			p.appendChild(document.createTextNode(msg));
-			li.appendChild(p);
-			li.setAttribute("class", "replies");
-			ul.appendChild(li);
-		});
 
-		socket.on('broadcast',function(msg){
-			var ul = document.getElementById("chat");
-			var li = document.createElement("li");
-			var p = document.createElement("p");
-			p.appendChild(document.createTextNode(msg));
-			li.appendChild(p);
-			li.setAttribute("class", "sent");
-			ul.appendChild(li);
-		});
-		//add contacts class = "fa fa-user-plus fa-fw"
-		//settings class = "fa fa-cog fa-fw"
-	   </script>
-</body></html>
+	
+	
+</body>
+
+</html>

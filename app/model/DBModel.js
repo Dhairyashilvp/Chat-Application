@@ -29,10 +29,3 @@ module.exports.getUsers = function(callToController){
         callToController(err,result);
     });
 }
-
-module.exports.getOnlineUsers = function(callToController){
-    var sql = 'SELECT data FROM sessions';
-    DBService.executeQuery(sql,function(err,result){
-        callToController(err,result);
-    });
-}
