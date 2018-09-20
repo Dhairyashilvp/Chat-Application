@@ -22,7 +22,6 @@ var socket = function(io){
             console.log('LOG : Socket Disconnected');
             console.log('LOG : List of Online Users on Server ');
             console.log(onlineUsers);
-            console.log(connection)
         });
 
           socket.on('Message', function(msg) {

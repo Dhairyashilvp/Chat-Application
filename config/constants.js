@@ -1,5 +1,5 @@
 const PORT = 8081;
-const IP = "192.168.92.176";
+const IP = "192.168.92.176";//Change your IP accordingly
 const BASE_URL = `http://${IP}:${PORT}`;
 const DB = {
     host: 'localhost',
