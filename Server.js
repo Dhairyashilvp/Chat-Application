@@ -18,7 +18,6 @@ var configure = function(){
         express: app,
         watch: true
     });
-    //console.log(bodyParser);
     var urlencodedParser = app.use(
         bodyParser.urlencoded({
             extended: false

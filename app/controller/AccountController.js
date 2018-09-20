@@ -18,8 +18,8 @@ module.exports.auth = function (req,res)
             }
             else if(result.length > 0)
             {
-                console.log("LOG : User SignedIn");
                 req.session.user = result[0];
+                console.log(`LOG : ${req.session.user.username} SignedIn`);
                 render(req.session.user, res);
             }
             else
@@ -69,7 +69,7 @@ module.exports.logout = function(req,res)
     res.redirect('/');
     req.session.destroy();
     online.onlineUsers.pop(req.body.username);
-    console.log("LOG : User SignedOut");
+    console.log(`LOG : ${req.body.username} SignedOut`);
 }
 
 function render(userDetails, res)
