@@ -1,6 +1,6 @@
 # Chat-Application
 
-### Welcome to the web based chat application that provides you to talk to your friend’s individually.
+#### Welcome to the web based chat application that provides you to talk with your friend’s individually.
 ![loginpagescreenshot](https://user-images.githubusercontent.com/16945322/45805869-4d91df80-bcdd-11e8-865d-84c5e5fff8d9.png)
  
 #### <p align="center"><em> (Landing/Login Page) </em></p>
@@ -32,11 +32,11 @@
 Getting started with ChatApp is super easy! Simply Pull this repository and follow the instructions below.
 ## Getting Started With ChatApp
 It's a web based Chat application developed using Node JS, Express JS framework Architect on MVC model.
-### Prerequisites
-You are going to need:
-•	Windows OS, Linux OS, Mac OS
-•	Node, version 8.13.3 or newer
-•	Any Text editor. (Recommended : vscode )
+### Prerequisites </br>
+You are going to need: </br></br>
+•	Windows OS, Linux OS, Mac OS </br>
+•	Node, version 8.13.3 or newer </br>
+•	Any Text editor. (Recommended : vscode) </br>
 ### Getting Set Up
 •	Pull this repository on GitHub
 •	DB Configuration for this app:-
@@ -63,8 +63,8 @@ Now all set. And it’s time to run this application.
 1.	Open terminal and go to the path “where server.js” is located
 2.	Run the command “nodemon Server.js”
 3.	If all the things have been successfully completed you will start receiving a log 
-In the terminal from the server 
-Example – “ LOG: Server running at http://192.168.92.176:8081 ”
+In the terminal from the server </br>
+Example – LOG: Server running at http://192.168.92.176:8081 
 4.	Open the browser (Recommended : Google Chrome)
 5.	Copy the link from the server log and paste into the URL section.
 6.	You will see the Login window shown in the first design.
@@ -76,6 +76,6 @@ Found a bug with ChatApp? Go ahead and submit an issue. And, of course, feel fre
 ### Contributors
 ChatApp was built by Ashutosh Litoriya.
 ### Special Thanks
-•	Gaurav Chauhan
-
-•	Dhairyashil Patil
+--------------------
+- [Gaurav Chauhan](https://github.com/2796gaurav)
+- Dhairyashil Patil
