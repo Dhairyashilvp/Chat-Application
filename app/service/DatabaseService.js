@@ -17,14 +17,19 @@ async function dbConnection(){
 };
 
 
-var executeQuery = function(sql,callback){
-    dbConnection().then(function(con) {
-        con.query(sql,function (err, result) {
-        callback(err,result);
-      }, function(err) {
-        console.log(err);
-        process.exit(1);
-      });
+var executeQuery = function(sql,callback)
+{
+    dbConnection().then(function(con) 
+    {
+        con.query(sql,function (err, result)
+        {
+            callback(err,result);
+        }, 
+        function(err)
+        {
+            console.log(err);
+            process.exit(1);
+        });
     });
 } 
 

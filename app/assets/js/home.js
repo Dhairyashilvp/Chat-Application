@@ -21,7 +21,7 @@ socket.on('update', function(onlineUsers)
         $.each(arr, function(key,value)
         {
             $("#users").append(     
-                $('<li>').attr('class','contact').click(function(){show(value)}).append(
+                $('<li>').attr('class','contact').click(function(){showDashboard(value)}).append(
                     $('<div>').attr('class','wrap').append(
                         $('<img>').attr({src : 'https://openclipart.org/download/211821/matt-icons_preferences-desktop-personal.svg', alt : ""}),
                         $('<div>').attr('class','meta').append(
@@ -34,6 +34,32 @@ socket.on('update', function(onlineUsers)
         })
     }
 });
+
+function showDashboard(email){
+    currentSelected = email;
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": `http://${ip}:${port}/chatData`,
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Cache-Control": "no-cache",
+        },
+        "data": {
+          "user": username,
+          "friend": currentSelected,
+        }
+      }
+      
+      $.ajax(settings).done(function (response) {
+        var chatHistory = JSON.stringify(response);
+        console.log(chatHistory);
+      });
+    $("#chat").html('');
+    $(".content").css({"display":"block"});
+    $("#dashboard").html(email);
+}
 
 
 
@@ -87,13 +113,6 @@ function logout()
       $.ajax(settings).done(function (response) {
         location.replace( `http://${ip}:${port}`)
       });
-}
-
-function show(email){
-    currentSelected = email;
-    $("#chat").html('');
-    $(".content").css({"display":"block"});
-    $("#dashboard").html(email);
 }
 
 function getUserKey(user)

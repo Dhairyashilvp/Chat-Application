@@ -10,7 +10,7 @@ const app           = express();
 var server          = require('http').createServer(app);
 var io              = require('socket.io')(server);
 var cookieParser    = require('cookie-parser');
-var socket          = require('./config/socket');
+var socket          = require('./app/controller/socketController');
 
 var configure = function(){
     nunjucks.configure('./app/view',{

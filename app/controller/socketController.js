@@ -1,3 +1,5 @@
+var path    = require('path');
+var ChatModel = require(path.join(__dirname ,'../model/ChatModel'));
 var onlineUsers = [];
 var connection = {};
 var socket = function(io)
@@ -25,15 +27,17 @@ var socket = function(io)
         });
 
         socket.on('disconnect', function(data){
-            //console.log(data);
+            //console.log(`LOG : ${data}`);
             socket.broadcast.emit('update', JSON.stringify(onlineUsers));
             console.log('LOG : Socket Disconnected');
             console.log(`LOG : List of Online Users on Server :- ${onlineUsers}`);
         });
 
           socket.on('Message', function(msg) {
-            //console.log(msg);
+            //console.log(`LOG : ${msg}`);
+            //console.log(`LOG : ${connection}`);
             socket.broadcast.to(connection[msg.to]).emit('new_msg', msg.message);
+            ChatModel.saveChatData(msg);
             //socket.broadcast.emit('broadcast', msg);
         });
       });

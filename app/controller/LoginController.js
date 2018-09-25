@@ -1,6 +1,4 @@
-var path = require('path');
-
-module.exports.home = function(req,res){
+module.exports.login = function(req,res){
     if(req.session.user)
     {
         res.redirect('/chats');

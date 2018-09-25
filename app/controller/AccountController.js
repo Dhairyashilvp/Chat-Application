@@ -1,7 +1,7 @@
 var path    = require('path');
 var DBModel = require(path.join(__dirname ,'../model/DBModel'));
 var ChatModel = require(path.join(__dirname ,'../model/ChatModel'));
-var online = require(path.join(__dirname ,'../../config/socket'));
+var online = require(path.join(__dirname ,'./socketController'));
 module.exports.auth = function (req,res)
 {
     if(req.session.user)
@@ -28,7 +28,7 @@ module.exports.auth = function (req,res)
                 res.redirect('/');
             }
         });
-    }  
+    }
 }
 
 module.exports.register = function (req, res)
@@ -39,11 +39,11 @@ module.exports.register = function (req, res)
         {
             res.setHeader('Content-Type', 'text/html');
             res.redirect('/');
-        } 
+        }
         else
         {
             res.send("SignUp failed");
-        }      
+        }
     });
     
 }
