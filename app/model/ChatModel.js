@@ -15,11 +15,35 @@ module.exports.getData = function(user,callback){
 
 module.exports.getChatData = function(chat,callback)
 {
-    var dir = path.join(__dirname,'../../chatHistory/',chat.user);
-    var file = path.join(dir,`/chatWith${chat.friend}.txt`)
-    if(fs.existsSync(dir))
+    var dir1 = path.join(__dirname,'../../chatHistory/',chat.user);
+    var dir2 = path.join(__dirname,'../../chatHistory/',chat.friend);
+    var file1 = path.join(dir2,`/chatWith${chat.user}.txt`);
+    var file2 = path.join(dir1,`/chatWith${chat.friend}.txt`);
+    if(fs.existsSync(dir1))
     {
-        fileOperation(file,'read','null',function(err,data){
+        fs.open(file1,'a+',function(err,fd)
+        {
+            if(err)
+            {
+                console.log(err);
+                //callback(err);
+            }
+            
+            fs.read(fd, function (err, data)
+            {
+                console.log(err);
+                //callback(err,data);
+            });
+
+            fs.close(fd, function(err)
+            {
+                if(err)
+                {
+                    console.log(`ERROR : ${err}`);
+                }
+            })
+        });
+        /* fileOperation(file,'read','null',function(err,data){
             if(err)
             {
                 console.log(err);
@@ -29,13 +53,14 @@ module.exports.getChatData = function(chat,callback)
                 //console.log(data);
                 callback(err,data);
             }
-        })
+        }) */
     }
     else
     {
-        fs.mkdirSync(dir);
+        fs.mkdirSync(dir1);
+        fs.mkdirSync(dir2);
         fileOperation(file,'read','null',function(err,data){
-            //console.log(data);
+            console.log(`LOG : ${data}`);
             callback(err,data);
         });
     }
@@ -58,8 +83,8 @@ module.exports.saveChatData = function(data)
 {
     var dir1 = path.join(__dirname,'../../chatHistory/',data.from);
     var dir2 = path.join(__dirname,'../../chatHistory/',data.to);
-    var file1 = path.join(dir1,`/chatWith${data.to}.txt`)
-    var file2 = path.join(dir2,`/chatWith${data.from}.txt`)
+    var file1 = path.join(dir1,`/chatWith${data.to}.txt`);
+    var file2 = path.join(dir2,`/chatWith${data.from}.txt`);
     if (fs.existsSync(dir1) && fs.existsSync(dir2))
     {
         fileOperation(file1,'write',data,function(response)
